@@ -1,14 +1,30 @@
+
 body {
+  background: linear-gradient(to right, #0a0a0a, #32037e, #010386, #0a0a0a);
   margin: 0;
   overflow: hidden;
-  font-family: 'Orbitron', sans-serif;
-  background: black;
-  color: #00ffff;
 }
 
-#content {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  z-index: 1;
+.sci-fi-title {
+  font-size: 4rem;
+  color: #00ffff;
+  text-shadow:
+    1px 1px 0 #0ff,
+    2px 2px 0 #0cc,
+    3px 3px 0 #099,
+    4px 4px 0 #066;
+
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0.1em;
+  text-align: center;
+
+}
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  z-index: -1; /* ensure it stays behind text */
 }
