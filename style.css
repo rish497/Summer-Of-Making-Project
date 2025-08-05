@@ -1,9 +1,4 @@
 
-body {
-  background: linear-gradient(to right, #0a0a0a, #32037e, #010386, #0a0a0a);
-  margin: 0;
-  overflow: hidden;
-}
 
 #bg {
   position: fixed;
@@ -31,17 +26,15 @@ body {
   padding-top: 30px;
 }
 
-.blinking-light {
-  animation: move-animation 10s infinite alternate linear;
-  color: rgb(255, 255, 255); /* Example: make the "light" red */
-  font-size: 2em; /* Example: adjust size */
+/* Add to your CSS file or <style> tag */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+#bg {
+  display: block;
+  width: 100vw;
+  height: 100vh;
 }
 
-@keyframes move-animation {
-  0% {
-    transform: translateX(-100%); /* Start off-screen to the right */
-  }
-  100% {
-    transform: translateX(100%); /* End off-screen to the left */
-  }
-}
