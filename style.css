@@ -5,6 +5,16 @@ body {
   overflow: hidden;
 }
 
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  z-index: -1;
+}
+
 .sci-fi-title {
   font-size: 4rem;
   color: #00ffff;
@@ -13,18 +23,25 @@ body {
     2px 2px 0 #0cc,
     3px 3px 0 #099,
     4px 4px 0 #066;
-
   font-family: 'Orbitron', sans-serif;
   letter-spacing: 0.1em;
   text-align: center;
-
+  position: relative;
+  z-index: 1;
+  padding-top: 30px;
 }
-#bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: block;
-  z-index: -1; /* ensure it stays behind text */
+
+.blinking-light {
+  animation: move-animation 10s infinite alternate linear;
+  color: rgb(255, 255, 255); /* Example: make the "light" red */
+  font-size: 2em; /* Example: adjust size */
+}
+
+@keyframes move-animation {
+  0% {
+    transform: translateX(-100%); /* Start off-screen to the right */
+  }
+  100% {
+    transform: translateX(100%); /* End off-screen to the left */
+  }
 }

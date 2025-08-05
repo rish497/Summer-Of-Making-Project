@@ -4,7 +4,13 @@ const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg'),
 });
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight);
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
 camera.position.setZ(30);
 
 // Add a spinning torus
@@ -24,14 +30,20 @@ scene.add(ambientLight);
 // Add stars
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-  const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+  const color = new THREE.Color(`hsl(${Math.random() * 360}, 100%, 70%)`);
+  const material = new THREE.MeshStandardMaterial({ color });
   const star = new THREE.Mesh(geometry, material);
 
   const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100));
   star.position.set(x, y, z);
   scene.add(star);
 }
-Array(200).fill().forEach(addStar);
+scene.children.forEach(obj => {
+  if (obj.isMesh && obj.geometry.type === 'SphereGeometry') {
+    obj.material.emissiveIntensity = 0.5 + 0.5 * Math.sin(Date.now() * 0.001 + obj.position.x);
+  }
+});
+
 
 // Animation
 function animate() {
